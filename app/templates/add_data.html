@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>add Character Data</title>
+		<link rel="stylesheet" href="{{url_for('static',filename='css/add_data.css')}}" type="text/css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div>
+				<h1>添加性格</h1>
+			</div>
+			<div>
+				<form method="POST" action="/add">
+					{{ form.hidden_tag() }}
+					{{ form.score.label }} {{ form.score(size=10) }}
+					<br />
+					{{ form.character.label }} {{ form.character(size=10) }}
+					<br />
+					{{ form.character_details.label }} {{ form.character_details(size=50) }}
+					<br />
+					{{ form.submit }}
+				</form>
+			</div>
+
+			<div>
+				<form method="POST" action="/delete">
+					<div>
+						<!-- <input type="submit" name="button" value="编辑" style="display:inline" > -->
+						<input id="inputlogintoregister" type="submit" name="button" value="删除所选项目" style="display:inline">
+					</div>
+					<table border="1" class="table" cellspacing="0">
+						<tr>
+							<th>选择</th>
+							<th>分数</th>
+							<th>性格</th>
+							<th>性格详情</th>
+						</tr>
+						{% for character in characters %}
+						<tr>
+							<th><input name="test" type="checkbox" value="{{ character.score|safe }}" /></th>
+							<th>
+								<p>{{ character.score|safe }}</p>
+							</th>
+							<th>
+								<p>{{ character.character|safe }}</p>
+							</th>
+							<th>
+								<p>{{ character.character_details|safe }}</p>
+							</th>
+							<!-- <th><p contenteditable="true">{{ character.score|safe }}</p></th> -->
+						</tr>
+						{% endfor %}
+					</table>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>welcome</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/examen.css')}}" type="text/css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="head">
+				<h1>性格测试</h1>
+			</div>
+			<form action="/submit_result">
+				<div>
+					<input id="inputlogintoregister" name="button" type="submit" value="提交"></input>
+					<div>
+						<p class="answer"><input name="question{{ question.number|safe }}" type="text">{{ question.result1|safe }}</input></p>
+						<p class="answer"><input name="question{{ question.number|safe }}" type="text">{{ question.result2|safe }}</input></p>
+					</div>
+					{% for question in questions %}
+					<div>
+						<p class="question">{{ question.number|safe }}. {{ question.name|safe }}</p>
+						<p class="answer"><input name="question{{ question.number|safe }}" type="radio" value="A">{{ question.result1|safe }}</input></p>
+						<p class="answer"><input name="question{{ question.number|safe }}" type="radio" value="B">{{ question.result2|safe }}</input></p>
+						<p class="answer"><input name="question{{ question.number|safe }}" type="radio" value="C">{{ question.result3|safe }}</input></p>
+						<br>
+					</div>
+					{% endfor %}
+					<input id="inputlogintoregister" name="button" type="submit" value="提交" onclick="check();"></input>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

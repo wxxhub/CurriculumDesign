@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>welcome</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/managerLogin.css')}}" type="text/css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="header">
+				<h1>管理员登录</h1>
+			</div>
+
+			<!--action="/commit"里面是要访问登陆页面的链接-->
+			<form action="/manager_commit">
+				<!--<div>html是前端</div>-->
+				<div class="group">
+					<input class="inputMaterial" type="text" name="username" required>
+					<span class="highlight"></span>
+					<span class="bar"></span>
+					<label>请输入管理员账户</label>
+				</div>
+				
+				<div class="group">
+					<input class="inputMaterial" type="password" name="psw" required>
+					<span class="highlight"></span>
+					<span class="bar"></span>
+					<label>请输入密码</label>
+				</div>
+				<div>
+					<input id="buttonlogintoregister" type="submit" value="登陆">
+					<!--<button id="buttonlogintoregister" type="submit">登陆</button>-->
+				</div>
+			</form>
+
+			<div id="footer-box">
+				<p class="footer-text">忘记密码？<span class="sign-up"> 找回密码</span></p>
+			</div>
+		</div>
+	</body>
+</html>

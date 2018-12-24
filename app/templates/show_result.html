@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>welcome</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/show_result.css')}}" type="text/css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="header">
+				<h2>测试结果</h2>
+			</div>
+			<div>
+				<p>{{character.character|safe }}</p>
+				<p>{{character.character_details|safe }}</p>
+			</div>
+		</div>
+	</body>
+</html>

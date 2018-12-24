@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>add Character Data</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/add_question.css')}}" type="text/css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div>
+				<h1>添加问题</h1>
+			</div>
+
+			<div>
+				<form method="POST" action="/add_question">
+					{{ form.hidden_tag() }}
+					{{ form.number.label }} {{ form.number(size=10) }}
+					<br />
+					{{ form.name.label }} {{ form.name(size=50) }}
+					<br />
+					{{ form.result1.label }} {{ form.result1(size=25) }}
+					<br />
+					{{ form.result2.label }} {{ form.result2(size=25) }}
+					<br />
+					{{ form.result3.label }} {{ form.result3(size=25) }}
+					<br />
+					{{ form.submit }}
+				</form>
+			</div>
+
+			<div>
+				<form method="POST" action="/delete_question">
+					<div>
+						<!-- <input type="submit" name="button" value="编辑" style="display:inline" > -->
+						<input  id="inputlogintoregister" type="submit" name="button" value="删除所选项目" style="display:inline">
+					</div>
+					<table class="table" border="1" cellspacing="0">
+						<tr>
+							<th>选择</th>
+							<th>编号</th>
+							<th>题目</th>
+							<th>答案1</th>
+							<th>答案2</th>
+							<th>答案3</th>
+						</tr>
+						{% for question in questions %}
+						<tr>
+							<th><input  name="test" type="checkbox" value="{{ question.number|safe }}" /></th>
+							<th>
+								<p>{{ question.number|safe }}</p>
+							</th>
+							<th>
+								<p>{{ question.name|safe }}</p>
+							</th>
+							<th>
+								<p>{{ question.result1|safe }}</p>
+							</th>
+							<th>
+								<p>{{ question.result2|safe }}</p>
+							</th>
+							<th>
+								<p>{{ question.result3|safe }}</p>
+							</th>
+							<!-- <th><p contenteditable="true">{{ question.score|safe }}</p></th> -->
+						</tr>
+						{% endfor %}
+					</table>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

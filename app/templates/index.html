@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>welcome</title>
+		<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" type="text/css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="header">
+				<h1>欢迎使用调查问卷</h1>
+			</div>
+
+			<form action="/direct">
+				<div>
+					<input id="inputlogintoregister" type="submit" name="direct" value="开始问卷调查">
+					<input id="inputlogintoregister" type="submit" name="direct" value="管理数据库">
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
+

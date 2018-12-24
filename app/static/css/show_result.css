@@ -1,0 +1,36 @@
+body {
+    font-family: Arial,serif;
+}
+
+
+.box {
+    position: relative;
+    height: auto;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    right: 0;
+    width: 60%;
+    color: #666;
+    border-radius: 3px;
+    background: #FFF;
+    margin: auto auto 100px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    overflow: hidden;
+}
+
+#header {
+    background: #009688;
+    position: relative;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.box h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #FFF;
+    text-align: center;
+    line-height: 100px;
+}

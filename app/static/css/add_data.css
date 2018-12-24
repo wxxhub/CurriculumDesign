@@ -1,0 +1,62 @@
+.box {
+    position: relative;
+    height: auto;
+    top: 10px;
+    left: 0;
+    z-index: 200;
+    right: 0;
+    width: 60%;
+    color: #666;
+    border-radius: 3px;
+    background: #FFF;
+    margin: auto auto 100px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    overflow: hidden;
+}
+
+
+.box h1 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #FFF;
+    text-align: center;
+    line-height: 100px;
+	background: #009688;
+	position: relative;
+	height: 80px;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+#inputlogintoregister{
+    background: #cfd8dc;
+    border: 0;
+    color: #009688;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    width: 230px;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    border-radius: 2px;
+}
+
+#inputlogintoregister:active {
+    background: #009688;
+    color: #263238;
+}
+
+#inputlogintoregister:hover {
+    background: #009688;
+    color: #FFF;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+/* .table{
+	margin-top: 5px;
+	margin: auto;
+} */

@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>manager user data</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/add_question.css')}}" type="text/css" />
+	</head>
+
+<body>
+    <div class="box">
+        <div>
+                <h1>添加用户</h1>
+        </div>
+
+        <div>
+            <form method="POST" action="/add_user">
+                {{ form.hidden_tag() }}
+                {{ form.number.label }} {{ form.number(size=10) }}
+                <br/>
+                {{ form.name.label }} {{ form.name(size=10) }}
+                <br/>
+                {{ form.character.label }} {{ form.character(size=50) }}
+                <br/>
+                <input>{{ form.submit }}</input>
+            </form>
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <th>参选总人数</th>
+                    {% for character in characters %}
+                    <th>{{ character.character|safe }} 人</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>{{user_size}}</th>
+                    {% for character_size in character_sizes %}
+                    <th>{{ character_size|safe }} 人</th>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <form  method="POST" action="/delete_user">
+                <div>
+                        <input id="inputlogintoregister" type="submit" name="button" value="删除所选项目" style="display:inline" >
+                </div>
+                <table  class="table" border="1" cellspacing="0">
+                    <tr>
+                        <th>选择</th>
+                        <th>编号</th>
+                        <th>姓名</th>
+                        <th>性格</th>
+                    </tr>
+                    {% for user in users %}
+                    <tr>
+                        <th><input name="test" type="checkbox" value="{{ user.number|safe }}"/></th>
+                        <th><p>{{ user.number|safe }}</p></th>
+                        <th><p>{{ user.name|safe }}</p></th>
+                        <th><p>{{ user.character|safe }}</p></th>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </form>
+        </div>
+    </div>  
+</body>
+</html>
