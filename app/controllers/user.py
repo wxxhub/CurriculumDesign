@@ -2,7 +2,8 @@ from flask import Blueprint, render_template
 from flask import redirect, request, url_for
 from flask_login import login_user, logout_user, current_user
 
-from app.models import User, Question, QuestionForm, Character, CharacterForm
+from app.models import *
+from app.db_manager import db, login_manager
 
 user_bp = Blueprint(
     'user',
@@ -18,7 +19,7 @@ def index():
 def direct():
     value = request.values.get("direct")
 
-    print (value)
+    # print (value)
     if value == "开始问卷调查": 
         return redirect(url_for('user.startExamen'))
     elif value == "管理数据库": 
@@ -36,9 +37,10 @@ def startExamen():
 @user_bp.route("/submit_result")
 def submitResult():
     questions = Question.query.all()
-    size = 0
-    for q in questions:
-        size += 1
+    size = Question.query.count()
+
+    user_number = request.values.get("user_number")
+    user_name = request.values.get("user_name")   
 
     score = 0
     i = 1
@@ -60,11 +62,21 @@ def submitResult():
     
     result_character = Character().query.filter_by(score=0).first()
     characters = Character.query.all()
+
     for c in characters:
         if c.score < score:
             result_character = c
         else:
             break
+
+    if user_number and user_name:
+        user = User()
+        user.number = user_number
+        user.name = user_name
+        user.character = result_character.character
+        db.session.add(user)
+        db.session.commit()
+
     if result_character:
         return render_template('show_result.html', character=result_character)
         return 'test'

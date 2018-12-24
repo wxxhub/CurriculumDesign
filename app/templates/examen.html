@@ -3,6 +3,25 @@
 		<meta charset="UTF-8">
 		<title>welcome</title>
 		<link rel="stylesheet" href="{{url_for('static', filename='css/examen.css')}}" type="text/css" />
+		<script type="text/javascript">
+			function ValidateRadio()
+			{
+				var radios = document.getElementsByName("question1");
+				for ( var i = 0; i < radios.length; i++) 
+				{
+					if (radios[i].checked==true) 
+					{
+						i++;
+						alert("你选中的是第"+i+"个单选框。值为："+radios[--i].value);
+					}
+					else
+					{
+						alert("请选择");
+					}
+				}
+				alert("请选择1");
+			}
+		</script>
 	</head>
 
 	<body>
@@ -10,12 +29,13 @@
 			<div class="head">
 				<h1>性格测试</h1>
 			</div>
-			<form action="/submit_result">
+			<form>
 				<div>
-					<input id="inputlogintoregister" name="button" type="submit" value="提交"></input>
+					<!-- <input id="inputlogintoregister" name="button" type="submit" value="提交"></input> -->
+					<input id="inputlogintoregister" name="button" type="submit" value="提交" onclick="ValidateRadio()"></input>
 					<div>
-						<p class="answer"><input name="question{{ question.number|safe }}" type="text">{{ question.result1|safe }}</input></p>
-						<p class="answer"><input name="question{{ question.number|safe }}" type="text">{{ question.result2|safe }}</input></p>
+						<p class="user_number"><input name="user_number" type="text">编号</input></p>
+						<p class="user_name"><input name="user_name" type="text">姓名</input></p>
 					</div>
 					{% for question in questions %}
 					<div>
@@ -26,7 +46,7 @@
 						<br>
 					</div>
 					{% endfor %}
-					<input id="inputlogintoregister" name="button" type="submit" value="提交" onclick="check();"></input>
+					<input id="inputlogintoregister" name="button" type="button" value="提交" onclick="ValidateRadio()"></input>
 				</div>
 			</form>
 		</div>

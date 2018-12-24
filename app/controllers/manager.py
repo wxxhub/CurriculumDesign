@@ -142,7 +142,8 @@ def managerUser():
     character_sizes = []
 
     for c in characters:
-        character_sizes.append(0)
+        size = User.query.filter_by(character=c.character).count()
+        character_sizes.append(size)
 
     form = UserForm()
     return render_template('manager_user.html', form=form, users=users, characters=characters, user_size=user_size, character_sizes=character_sizes)
@@ -152,9 +153,9 @@ def managerUser():
 def addUser():
     form = UserForm()
     if form.validate_on_submit():
-        question = User()
-        form.populate_obj(question)
-        db.session.add(question)
+        user = User()
+        form.populate_obj(user)
+        db.session.add(user)
         db.session.commit()
     return redirect(url_for('manager.managerUser'))
 
