@@ -14,8 +14,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = 'Sqsdsffqrhgh.,/1#$%^&'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///character_test.db'
+app.secret_key = 'Sqsdsffqrhgh.,/1#$%^&ss'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://wxx:123/character_test.db'
 app.config['SECRET_KEY'] = 'please, tell nobody'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)

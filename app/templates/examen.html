@@ -4,22 +4,41 @@
 		<title>welcome</title>
 		<link rel="stylesheet" href="{{url_for('static', filename='css/examen.css')}}" type="text/css" />
 		<script type="text/javascript">
-			function ValidateRadio()
+			function ValidateRadio(question_size)
 			{
-				var radios = document.getElementsByName("question1");
-				for ( var i = 0; i < radios.length; i++) 
+				var val_number = document.getElementById("user_number").value;
+				var val_name = document.getElementById("user_name").value;
+				var size = parseInt(question_size);
+				if (val_number == "")
 				{
-					if (radios[i].checked==true) 
+					alert("请填写编号");
+					return false;
+				}
+				else if (val_name == "")
+				{
+					alert("请填写姓名");
+					return false;
+				}
+
+				for (var i = 1; i <= size; i++)
+				{
+					var radios = document.getElementsByName("question"+i);
+					var have_value = false;
+					for (var j = 0; j < radios.length; j++)
 					{
-						i++;
-						alert("你选中的是第"+i+"个单选框。值为："+radios[--i].value);
+						if (radios[j].checked==true)
+						{
+							have_value = true;
+						}
 					}
-					else
+
+					if (have_value == false)
 					{
-						alert("请选择");
+						alert("请完成所有题目");
+						return false;	
 					}
 				}
-				alert("请选择1");
+				return true;
 			}
 		</script>
 	</head>
@@ -29,13 +48,12 @@
 			<div class="head">
 				<h1>性格测试</h1>
 			</div>
-			<form>
+			<form action="/submit_result" onsubmit="return ValidateRadio('{{ question_size|safe }}')">
 				<div>
-					<!-- <input id="inputlogintoregister" name="button" type="submit" value="提交"></input> -->
-					<input id="inputlogintoregister" name="button" type="submit" value="提交" onclick="ValidateRadio()"></input>
+					<input id="inputlogintoregister" name="button" type="submit" value="提交"></input>
 					<div>
-						<p class="user_number"><input name="user_number" type="text">编号</input></p>
-						<p class="user_name"><input name="user_name" type="text">姓名</input></p>
+						<p class="user_number"><input id ="user_number" name="user_number" type="text">编号</input></p>
+						<p class="user_name"><input id ="user_name" name="user_name" type="text">姓名</input></p>
 					</div>
 					{% for question in questions %}
 					<div>
@@ -46,7 +64,7 @@
 						<br>
 					</div>
 					{% endfor %}
-					<input id="inputlogintoregister" name="button" type="button" value="提交" onclick="ValidateRadio()"></input>
+					<input id="inputlogintoregister" name="button" type="submit" value="提交"></input>
 				</div>
 			</form>
 		</div>

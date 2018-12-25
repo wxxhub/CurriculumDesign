@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>import user data</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/add_question.css')}}" type="text/css" />
+	</head>
+
+<body>
+    <div class="box">
+        <div>
+                <h1>导入用户</h1>
+        </div>
+
+        <div>
+            <form action="/import_user">
+                请输入文件的绝对路径<input type="text" name="file" value="E:\project_design\xlsx_test\test.xlsx">
+            </br>
+                请输入编号的列号<input type="text" name="number_x" value="1">
+            </br>
+                请输入姓名的列号<input type="text" name="name_x" value="1">
+            </br>
+                请输入开始录入的行<input type="text" name="start_y" value="1">
+            </br>
+                <input type="submit" name="button" value="导入用户">
+            </form>
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                </tr>
+                {% for form in forms %}
+                <tr>
+                    <th>{{ form.number|safe }}</th>
+                    <th>{{ form.name|safe }}</th>
+                </tr>
+                {% endfor %}
+            </table>
+		</div>
+    </div>  
+</body>
+</html>

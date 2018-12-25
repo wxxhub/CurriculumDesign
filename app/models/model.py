@@ -60,7 +60,7 @@ class User(db.Model):
     name = db.Column(db.String(8))
     character = db.Column(db.String(32))
 
-    def __init__(self,number = 160111111, name='user0', character='111111'):
+    def __init__(self,number = 160111111, name='user0', character=''):
         self.number = number
         self.name = name
         self.character = character

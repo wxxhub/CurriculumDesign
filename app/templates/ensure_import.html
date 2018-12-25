@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ensure import</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/show_result.css')}}" type="text/css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="header">
+				<h2>导入内容</h2>
+			</div>
+			<div>
+				<form action="/ensure_user">
+					<input type="submit" name="button" value="确认导入">
+				</form>
+                <table>
+                    <tr>
+                        <th>编号</th>
+                        <th>姓名</th>
+                    </tr>
+                    {% for form in forms %}
+                    <tr>
+                        <th>{{ form.number|safe }}</th>
+                        <th>{{ form.name|safe }}</th>
+                    </tr>
+                    {% endfor %}
+                </table>
+			</div>
+		</div>
+	</body>
+</html>

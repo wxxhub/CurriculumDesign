@@ -18,24 +18,42 @@
                 <br/>
                 {{ form.name.label }} {{ form.name(size=10) }}
                 <br/>
-                {{ form.character.label }} {{ form.character(size=50) }}
-                <br/>
-                <input>{{ form.submit }}</input>
+                <!-- {{ form.character.label }} {{ form.character(size=50) }}
+                <br/> -->
+                {{ form.submit }}
             </form>
         </div>
 
         <div>
-            <table>
+            <form action="/config">
+                {{config|safe}}<input type="submit" name="button" value="{{config_submit|safe}}" >
+            </form>
+            <form action="/to_import">
+                <input type="submit" name="button" value="导入用户" >
+            </form>
+        </div>
+
+        <div>
+            <table class="table" border="1" cellspacing="0">
                 <tr>
+                    <th>数据库人数</th>
                     <th>参选总人数</th>
                     {% for character in characters %}
-                    <th>{{ character.character|safe }} 人</th>
+                    <th>{{ character.character|safe }} 人数</th>
                     {% endfor %}
                 </tr>
                 <tr>
                     <th>{{user_size}}</th>
+                    <th>{{test_user_size}}</th>
                     {% for character_size in character_sizes %}
-                    <th>{{ character_size|safe }} 人</th>
+                    <th>{{ character_size|safe }}</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>////</th>
+                    <th>比例</th>
+                    {% for character_ratio in character_ratios %}
+                    <th>{{ character_ratio|safe }}</th>
                     {% endfor %}
                 </tr>
             </table>
@@ -44,24 +62,24 @@
         <div>
             <form  method="POST" action="/delete_user">
                 <div>
-                        <input id="inputlogintoregister" type="submit" name="button" value="删除所选项目" style="display:inline" >
+                    <input id="inputlogintoregister" type="submit" name="button" value="删除所选项目" style="display:inline" >
+                    <table  class="table" border="1" cellspacing="0">
+                        <tr>
+                            <th>选择</th>
+                            <th>编号</th>
+                            <th>姓名</th>
+                            <th>性格</th>
+                        </tr>
+                        {% for user in users %}
+                        <tr>
+                            <th><input name="test" type="checkbox" value="{{ user.number|safe }}"/></th>
+                            <th><p>{{ user.number|safe }}</p></th>
+                            <th><p>{{ user.name|safe }}</p></th>
+                            <th><p>{{ user.character|safe }}</p></th>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
-                <table  class="table" border="1" cellspacing="0">
-                    <tr>
-                        <th>选择</th>
-                        <th>编号</th>
-                        <th>姓名</th>
-                        <th>性格</th>
-                    </tr>
-                    {% for user in users %}
-                    <tr>
-                        <th><input name="test" type="checkbox" value="{{ user.number|safe }}"/></th>
-                        <th><p>{{ user.number|safe }}</p></th>
-                        <th><p>{{ user.name|safe }}</p></th>
-                        <th><p>{{ user.character|safe }}</p></th>
-                    </tr>
-                    {% endfor %}
-                </table>
             </form>
         </div>
     </div>  

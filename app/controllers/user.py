@@ -5,6 +5,8 @@ from flask_login import login_user, logout_user, current_user
 from app.models import *
 from app.db_manager import db, login_manager
 
+from .config import getConfigResult
+
 user_bp = Blueprint(
     'user',
     __name__,
@@ -28,11 +30,9 @@ def direct():
 @user_bp.route("/examen")
 def startExamen():
     questions = Question.query.all()
+    question_size = Question.query.count()
     form = QuestionForm()
-    size = 0
-    for q in questions:
-        size += 1
-    return render_template('examen.html', form=form, questions=questions, question_size = size)
+    return render_template('examen.html', form=form, questions=questions, question_size = question_size)
 
 @user_bp.route("/submit_result")
 def submitResult():
@@ -40,7 +40,16 @@ def submitResult():
     size = Question.query.count()
 
     user_number = request.values.get("user_number")
-    user_name = request.values.get("user_name")   
+    user_name = request.values.get("user_name")
+
+    config = getConfigResult()
+
+    if config != 0:
+        u = User.query.filter_by(number=user_number).first()
+        if u and u.name == user_name:
+            print ('do nothing')
+        else:
+            return '数据库中没有您的信息，请联系管理员'
 
     score = 0
     i = 1
@@ -70,12 +79,17 @@ def submitResult():
             break
 
     if user_number and user_name:
-        user = User()
-        user.number = user_number
-        user.name = user_name
-        user.character = result_character.character
-        db.session.add(user)
-        db.session.commit()
+        u = User.query.filter_by(number=user_number).first()
+        if u:
+            u.character = result_character.character
+            db.session.commit()
+        else:
+            user = User()
+            user.number = user_number
+            user.name = user_name
+            user.character = result_character.character
+            db.session.add(user)
+            db.session.commit()
 
     if result_character:
         return render_template('show_result.html', character=result_character)

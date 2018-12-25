@@ -36,7 +36,7 @@
     font-size: 16px;
     font-weight: 300;
     width: 230px;
-    margin: 20px auto;
+    /* margin: 20px auto; */
     display: block;
     cursor: pointer;
     -webkit-transition: all 0.4s;
